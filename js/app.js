@@ -1,14 +1,20 @@
 const apiKey = "53f070eb45aa431085b223028230712"
-const cityName = "Paris"
-
+const cityName = "Milan"
 // const cityName = "auto:ip"
+
+
+/*
+Returns weather JSON based on city name
+ */
 async function getData() {
     const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${cityName}&days=5
 `)
     return await response.json()
 }
 
-
+/*
+Created weather window for a city
+ */
 async function createElements() {
     const weatherData = await getData()
     console.log(weatherData)
@@ -67,19 +73,20 @@ async function createElements() {
         li.appendChild(img)
         li.appendChild(dayTempSpan)
         $forecastList.appendChild(li)
-
-
     });
-
-
-
 }
 
+/*
+Returns day name
+ */
 function getDayName(dayNumber) {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     return daysOfWeek[dayNumber];
 }
 
+/*
+Sets weather icon based on weather condition
+ */
 function setIcon(element) {
     const dirPath = 'assets/icons/'
     let icon = ""
