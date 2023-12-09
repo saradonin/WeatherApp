@@ -16,6 +16,7 @@ Created weather window for a city
 async function createElements(city = "auto:ip") {
     document.body.classList.add("loading")
     const weatherData = await getData(city)
+    console.log(weatherData)
 
     // Clone and add module
     const $originalWeatherModule = document.querySelector(".module__weather")
@@ -100,25 +101,28 @@ function setIcon(element) {
     const dirPath = 'assets/icons/'
     let icon = ""
     switch (true) {
-        case element.includes("rain"):
+        case ["Rain", "rain"].some(word => element.includes(word)):
             icon = "rain.svg"
             break;
-        case element.includes("snow"):
+        case ["Rain", "rain"].some(word => element.includes(word)):
+            icon = "rain.svg"
+            break;
+        case ["Snow", "snow"].some(word => element.includes(word)):
             icon = "snow.svg"
             break;
-        case element.includes("storm"):
+        case ["Storm", "storm"].some(word => element.includes(word)):
             icon = "thunderstorm.svg"
             break;
-        case element.includes("fog"):
+        case ["Fog", "fog", "Foggy", "foggy"].some(word => element.includes(word)):
             icon = "fog.svg"
             break;
-        case element.includes("hail"):
+        case ["Hail", "hail"].some(word => element.includes(word)):
             icon = "hail.svg"
             break;
-        case element.includes("cloudy"):
+        case ["Cloudy", "cloudy"].some(word => element.includes(word)):
             icon = "cloudy.svg"
             break;
-        case element.includes("clear"):
+        case ["Clear", "clear", "Sunny", "sunny"].some(word => element.includes(word)):
             icon = "clear-day.svg"
             break;
         default:
@@ -134,7 +138,6 @@ Closes elements on click
  */
 function updateModules() {
     const closeButtons = document.querySelectorAll(".btn--close")
-    console.log(closeButtons)
     closeButtons.forEach(button => {
         button.addEventListener("click", () => {
             const parentElement = button.parentNode;
@@ -160,6 +163,7 @@ function addCity () {
     $searchButton.addEventListener("click", (e) => {
         e.preventDefault()
         createElements($searchInput.value.trim())
+        $searchInput.value = ""
         $addCityForm.setAttribute("hidden", "")
     })
 
