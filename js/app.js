@@ -82,6 +82,7 @@ async function createElements() {
         li.appendChild(dayTempSpan)
         $forecastList.appendChild(li)
     });
+    updateModules()
 }
 
 /*
@@ -137,14 +138,17 @@ $addCityButton.addEventListener("click", () => {
 /*
 Closes elements on click
  */
-const closeButtons = document.querySelectorAll(".btn--close")
-closeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const parentElement = button.parentNode;
-        parentElement.setAttribute("hidden", "")
+function updateModules(){
+    const closeButtons = document.querySelectorAll(".btn--close")
+    console.log(closeButtons)
+    closeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const parentElement = button.parentNode;
+            parentElement.setAttribute("hidden", "")
+        })
     })
+}
 
-})
 
 
 createElements()
