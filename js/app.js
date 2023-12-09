@@ -17,41 +17,49 @@ Created weather window for a city
  */
 async function createElements() {
     const weatherData = await getData()
-    console.log(weatherData)
 
+    // Clone and add module
+    const $originalWeatherModule = document.querySelector(".module__weather")
+    const newWeatherModule = $originalWeatherModule.cloneNode(true)
+    newWeatherModule.removeAttribute("hidden")
+
+    const app = document.querySelector("#app")
+    app.appendChild(newWeatherModule)
+
+    // Set data items
     const cityName = weatherData.location.name
-    const $cityName = document.querySelector(".city__name")
+    const $cityName = newWeatherModule.querySelector(".city__name")
     $cityName.textContent = cityName
 
     const currentTemperature = weatherData.current.temp_c
-    const $currentTemperature = document.querySelector(".temperature__value")
+    const $currentTemperature = newWeatherModule.querySelector(".temperature__value")
     $currentTemperature.textContent = currentTemperature
 
     const currentPressure = weatherData.current.pressure_mb
-    const $currentPressure = document.querySelector(".pressure__value")
+    const $currentPressure = newWeatherModule.querySelector(".pressure__value")
     $currentPressure.textContent = `${currentPressure} hPa`
 
     const currentHumidity = weatherData.current.humidity
-    const $currentHumidity = document.querySelector(".humidity__value")
+    const $currentHumidity = newWeatherModule.querySelector(".humidity__value")
     $currentHumidity.textContent = `${currentHumidity}%`
 
     const currentWindSpeed = weatherData.current.wind_kph
-    const $currentWindSpeed = document.querySelector(".wind-speed__value")
+    const $currentWindSpeed = newWeatherModule.querySelector(".wind-speed__value")
     $currentWindSpeed.textContent = `${(currentWindSpeed / 3.6).toFixed(1)} m/s`
 
     const currentCondition = weatherData.current.condition.text
-    const $currentConditionIcon = document.querySelector(".weather__icon img")
+    const $currentConditionIcon = newWeatherModule.querySelector(".weather__icon img")
     $currentConditionIcon.src = setIcon(currentCondition)
 
+
+    // Forecast section
     const forecast = weatherData.forecast.forecastday
-    const $forecastList = document.querySelector(".weather__forecast")
+    const $forecastList = newWeatherModule.querySelector(".weather__forecast")
     forecast.forEach((day, index) => {
         const dayDate = new Date(day.date); // Convert the date string to a Date object
         const dayName = getDayName(dayDate.getDay())
         const dayCondition = day.day.condition.text
         const dayTemp = day.day.maxtemp_c
-
-        console.log(dayName, dayCondition, dayTemp);
 
         const li = document.createElement("li")
         const dayNameSpan = document.createElement("span")
@@ -126,12 +134,17 @@ $addCityButton.addEventListener("click", () => {
     $addCityForm.removeAttribute("hidden")
 });
 
+/*
+Closes elements on click
+ */
+const closeButtons = document.querySelectorAll(".btn--close")
+closeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const parentElement = button.parentNode;
+        parentElement.setAttribute("hidden", "")
+    })
 
-// TODO this only hides first, make it work for all items
-const closeButton = document.querySelector(".btn--close")
-closeButton.addEventListener("click", () => {
-    const parentElement = closeButton.parentNode;
-    parentElement.setAttribute("hidden", "")
 })
+
 
 createElements()
