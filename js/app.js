@@ -119,5 +119,19 @@ function setIcon(element) {
     return `${dirPath}${icon}`
 }
 
+const $addCityButton = document.querySelector("#add-city")
+const $addCityForm = document.querySelector(".module__form")
+
+$addCityButton.addEventListener("click", () => {
+    $addCityForm.removeAttribute("hidden")
+});
+
+
+// TODO this only hides first, make it work for all items
+const closeButton = document.querySelector(".btn--close")
+closeButton.addEventListener("click", () => {
+    const parentElement = closeButton.parentNode;
+    parentElement.setAttribute("hidden", "")
+})
 
 createElements()
