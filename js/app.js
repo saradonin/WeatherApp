@@ -1,13 +1,11 @@
 const apiKey = "53f070eb45aa431085b223028230712"
-const cityName = "Milan"
-// const cityName = "auto:ip"
 
 
 /*
 Returns weather JSON based on city name
  */
-async function getData() {
-    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${cityName}&days=5
+async function getData(city) {
+    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5
 `)
     return await response.json()
 }
@@ -15,8 +13,9 @@ async function getData() {
 /*
 Created weather window for a city
  */
-async function createElements() {
-    const weatherData = await getData()
+async function createElements(city = "auto:ip") {
+    document.body.classList.add("loading")
+    const weatherData = await getData(city)
 
     // Clone and add module
     const $originalWeatherModule = document.querySelector(".module__weather")
@@ -55,7 +54,7 @@ async function createElements() {
     // Forecast section
     const forecast = weatherData.forecast.forecastday
     const $forecastList = newWeatherModule.querySelector(".weather__forecast")
-    forecast.forEach((day, index) => {
+    forecast.forEach((day) => {
         const dayDate = new Date(day.date); // Convert the date string to a Date object
         const dayName = getDayName(dayDate.getDay())
         const dayCondition = day.day.condition.text
@@ -83,6 +82,7 @@ async function createElements() {
         $forecastList.appendChild(li)
     });
     updateModules()
+    document.body.classList.remove("loading")
 }
 
 /*
@@ -128,17 +128,11 @@ function setIcon(element) {
     return `${dirPath}${icon}`
 }
 
-const $addCityButton = document.querySelector("#add-city")
-const $addCityForm = document.querySelector(".module__form")
-
-$addCityButton.addEventListener("click", () => {
-    $addCityForm.removeAttribute("hidden")
-});
 
 /*
 Closes elements on click
  */
-function updateModules(){
+function updateModules() {
     const closeButtons = document.querySelectorAll(".btn--close")
     console.log(closeButtons)
     closeButtons.forEach(button => {
@@ -149,6 +143,33 @@ function updateModules(){
     })
 }
 
+/*
+Adds new city
+ */
+function addCity () {
+    const $addCityButton = document.querySelector("#add-city")
+    const $addCityForm = document.querySelector(".module__form")
+
+    $addCityButton.addEventListener("click", () => {
+        $addCityForm.removeAttribute("hidden")
+    });
+
+    const $searchButton = $addCityForm.querySelector(".find-city button");
+    const $searchInput = $addCityForm.querySelector("#search")
+
+    $searchButton.addEventListener("click", (e) => {
+        e.preventDefault()
+        createElements($searchInput.value.trim())
+        $addCityForm.setAttribute("hidden", "")
+    })
 
 
-createElements()
+}
+
+
+function main () {
+    createElements()
+    addCity()
+}
+
+main()
