@@ -1,119 +1,27 @@
-![Coders-Lab-1920px-no-background](https://user-images.githubusercontent.com/30623667/104709387-2b7ac180-571f-11eb-9b94-517aa6d501c9.png)
+# Weather App
+A simple weather app that fetches and displays weather information based on city names. The app provides a current weather overview and a 5-day forecast. Users can add new cities to track the weather.
 
-# Kilka ważnych informacji
+## Features
+Dynamic Weather Display: Real-time weather information, including temperature, pressure, humidity, and wind speed.
 
-Przed przystąpieniem do rozwiązywania zadań przeczytaj poniższe wskazówki
+Forecast: Get a 5-day weather forecast with detailed information for each day.
 
-## Jak zacząć?
+City Search: Easily add new cities to track their weather.
 
-1. Stwórz [*fork*](https://guides.github.com/activities/forking/) repozytorium z zadaniami.
-2. Sklonuj fork repozytorium (stworzony w punkcie 1) na swój komputer. Użyj do tego komendy `git clone adres_repozytorium`
-Adres możesz znaleźć na stronie forka repozytorium po naciśnięciu w guzik "Clone or download".
-3. Rozwiąż zadania i skomituj zmiany do swojego repozytorium. Użyj do tego komend `git add nazwa_pliku`.
-Jeżeli chcesz dodać wszystkie zmienione pliki użyj `git add .` 
-Pamiętaj że kropka na końcu jest ważna!
-Następnie skommituj zmiany komendą `git commit -m "nazwa_commita"`
-4. Wypchnij zmiany do swojego repozytorium na GitHubie.  Użyj do tego komendy `git push origin main`
-5. Stwórz [*pull request*](https://help.github.com/articles/creating-a-pull-request) do oryginalnego repozytorium, gdy skończysz wszystkie zadania.
+## Technologies Used
+JavaScript (ES6+): Utilizing modern JavaScript features and async/await for asynchronous operations.
 
-Poszczególne zadania rozwiązuj w odpowiednich plikach.
+Fetch API: Communicating with the WeatherAPI to retrieve weather data.
 
-### Poszczególne zadania rozwiązuj w odpowiednich plikach.
+Dynamic UI: DOM manipulation to dynamically update the user interface with fetched data.
 
-**Repozytorium z ćwiczeniami zostanie usunięte 2 tygodnie po zakończeniu kursu. Spowoduje to też usunięcie wszystkich forków, które są zrobione z tego repozytorium.**
+Responsive Design: Ensures a seamless experience across devices.
 
+## How to Use
+Clone the repository.
 
-<img src="http://coderslab.pl/img/coderslab-logo.png" align="right" width="400"/>
+Open index.html in your browser or deploy it on a server.
 
-# Projekt - Weather App
+Explore weather information for your city and add new cities to the list.
 
-Celem warsztatu, jest przygotowanie aplikacji pogodowej, pozyskującej dane z ogólnodostępnych API. Pierwszym krokiem powinno być zapoznanie się ze strukturą projektu, układem plików, dokumentacjami API a także plikiem HTML.
-
-![](images/screenshot.png)
-
-### Struktura projektu:
-
-```
-css
-  -- style.css (plik ze stylami)
-js
-  app.js (plik główny)
-
-assets
-  -- icons (ikony dla projektu)
-
-index.html (plik główny aplikacji)
-```
-
-
-
-## Założenia
-W aplikacji powinniśmy mieć możliwość odnalezienia współrzędnych konkretnego miejsca i na podstawie tych danych, wyświetlić aktualną i prognozowaną pogodę. Chcemy wyświetlać wszystkie niezbędne informacje:
-
-- Aktualna temperatura
-- Wilgotność
-- Ciśnienie
-- Prędkość wiatru
-- Prognoza pogody na 5 dni w przód
-
-
-W warsztacie tym należy korzystać z wszystkich udogodnień ES6, takich jak deklaracje zmiennych przez `const`, `let`, klasowość `class`, funkcje strzałkowe, `import/export`, `async/await`, `fetch` itd.
-
-## Zasady działania
-
-### Wejście na stronę
-Po wejściu na stronę powinniśmy wysłać zapytanie do `Weather API` aby pobrać pogodę dla naszej aktualnej lokalizacji (parametr `q` musi mieć wartość `auto:ip` - jest to opisane niżej) i wyświetlić ją użytkownikowi.
-
-![](images/weather-app-1.gif)
-
-
-### Dodanie nowego miasta
-Na stronie znajduje się przycisk "Dodaj miasto". Po jego kliknięciu powinniśmy wyświetlić ukryta sekcję z formularzem. Po wpisaniu przez użytkownika miasta czy całego adresu należy wykonać zapytanie do `Weather API`, aby pobrać aktualną pogodę i wyświetlić ją użytkownikowi (pole formularza nie może mieć polskich znaków - jest to ograniczenie API). Po pobraniu danych formularz powinien zniknąć.
-
-![](images/weather-app-2.gif)
-
-
-### Ukrywanie/Usuwanie modułu
-Po kliknięciu przycisku "x" w prawym górnym rogu każdego modułu powinniśmy go ukryć. Jeżeli jest to moduł pogodowy, możemy go usunąć ze struktury HTML.
-
-![](images/weather-app-3.gif)
-
-
-## Przydatne informacje
-
-### Efekt ładowania strony
-Wystarczy, że dodacie do elementu `body` klasę `loading` a pojawi się na całym ekranie spinner który możecie zauważyć na nagraniach wyżej. Aby się go pozbyć, wystarczy usunąć klasę `loading` z elementu `body`.
-
-
-### Ikony
-W projekcie mamy zainstalowane ikony pogodowe które znajdziecie w folderze `assets/icons`.  
-
-Dodatkowo możecie używać ikon Material-Icons. Listę tych ikon możecie znaleźć tutaj: [https://material.io/tools/icons](https://material.io/tools/icons).  
-Używamy ich za pomocą:
-
-```html
-<i class="material-icons">nazwa_ikony</i>
-```
-
-## API
-
-### Weather API
-
-**Wymagany jest klucz API!**
-
-API odpowiedzialne za dostarczenie nam aktualnej i prognozowanej pogody.
-
-Należy się zarejestrować, **wygenerować swój klucz** i zapisać go w projekcie.
-
-Pobranie klucza: [https://www.weatherapi.com](https://www.weatherapi.com)  
-
-Pobranie aktualnej pogody i prognozy na 5 dni: 
-
-```
-http://api.weatherapi.com/v1/forecast.json?key=twoj_klucz&q=nazwa_miasta_lub_auto:ip&days=5
-```
-
-- Pod wartość `twoj_klucz` podstawiamy nasz klucz wygenerowany przez Weather API
-- Pod wartość `nazwa_miasta_lub_auto:ip` podstawiamy wartość z pola wyszukiwarki (bez polskich znaków!) lub `auto:ip` aby otrzymać pogodę dla naszej aktualnej lokalizacji
-
-
+![Screenshot from 2023-12-09 19-25-35.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202023-12-09%2019-25-35.png)
