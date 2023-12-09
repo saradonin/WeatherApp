@@ -1,3 +1,4 @@
+const apiHost = "http://api.weatherapi.com"
 const apiKey = "53f070eb45aa431085b223028230712"
 
 
@@ -6,7 +7,7 @@ Returns weather JSON based on city name
  */
 async function getData(city) {
     try {
-        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5`);
+        const response = await fetch(`${apiHost}/v1/forecast.json?key=${apiKey}&q=${city}&days=5`);
         if (!response.ok) {
             throw new Error("City not found");
         }
@@ -183,7 +184,6 @@ function addCity() {
     $searchButton.addEventListener("click", (e) => {
         e.preventDefault()
         const searchCity = replacePolishLetters($searchInput.value.trim())
-        console.log(searchCity)
         createElements(searchCity)
         $searchInput.value = ""
         $addCityForm.setAttribute("hidden", "")
