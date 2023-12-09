@@ -10,14 +10,14 @@
 <body>
 <header>
   <div class="container">
-    <div class="logo"><img src="assets/icons/logo.svg"/> Weather App</div>
+    <div class="logo"><img src="assets/icons/logo.svg" alt="Logo"/> Weather App</div>
     <button class="btn" id="add-city">Dodaj miasto <i class="material-icons">add_circle</i></button>
   </div>
 </header>
 
 <section id="app" class="container">
 
-  <!-- Moduł wyszukiwarki - domyślnie ukryty -->
+  <!-- Search module -->
   <div class="module module__form" hidden>
     <button class="btn btn--icon btn--close"><i class="material-icons">close</i></button>
     <h2>Znajdź miasto</h2>
@@ -29,16 +29,12 @@
     <div class="search-error"></div>
   </div>
 
-  <!--
-     Moduł pogody
-     Poniższy kod możecie potraktować jako template do kolejnych modułów
-     Możecie go sklonować używając metody cloneNode(true), i powstawiać odpowiednie wartości z aktualnego miasta.
-  -->
+  <!-- Weather module -->
   <div class="module module__weather" hidden>
     <button class="btn btn--icon btn--close"><i class="material-icons">close</i></button>
 
     <div class="weather">
-      <div class="weather__icon"><img src="assets/icons/partly-cloudy-day.svg"/></div>
+      <div class="weather__icon"><img src="assets/icons/partly-cloudy-day.svg" alt="Weather conditions"/></div>
 
       <div class="weather__info">
         <div class="city">
@@ -48,9 +44,9 @@
       </div>
 
       <ul class="weather__details">
-        <li><img src="assets/icons/pressure.svg"/> <span class="pressure__value">998 hPa</span></li>
-        <li><img src="assets/icons/humidity.svg"/> <span class="humidity__value">45%</span></li>
-        <li><img src="assets/icons/wind-speed.svg"/> <span class="wind-speed__value">5.5 m/s</span></li>
+        <li><img src="assets/icons/pressure.svg" alt="Pressure"/> <span class="pressure__value">998 hPa</span></li>
+        <li><img src="assets/icons/humidity.svg" alt="Humidity"/> <span class="humidity__value">45%</span></li>
+        <li><img src="assets/icons/wind-speed.svg" alt="Wind speed"/> <span class="wind-speed__value">5.5 m/s</span></li>
       </ul>
 
       <ul class="weather__forecast">
