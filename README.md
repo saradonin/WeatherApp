@@ -24,4 +24,4 @@ Open index.html in your browser or deploy it on a server.
 
 Explore weather information for your city and add new cities to the list.
 
-![Screenshot from 2023-12-09 19-25-35.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202023-12-09%2019-25-35.png)![Screenshot from 2023-12-09 19-25-35.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202023-12-09%2019-25-35.png)
+![weatherapp](https://github.com/saradonin/WeatherApp/assets/124811561/9b7e38c4-0f6a-40be-be03-cc32801e9269)
