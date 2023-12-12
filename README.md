@@ -18,9 +18,8 @@ A simple weather app that fetches and displays weather information based on city
 Responsive Design: Ensures a seamless experience across devices.
 
 ## How to Use
-Clone the repository.
-
-Open index.html in your browser or deploy it on a server.
+Visit https://foggy-weather.vercel.app
+For developement purpose: Clone the repository.
 
 Explore weather information for your city and add new cities to the list.
 
