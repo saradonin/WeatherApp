@@ -1,4 +1,4 @@
-const apiHost = "http://api.weatherapi.com"
+const apiHost = "https://api.weatherapi.com"
 const apiKey = "53f070eb45aa431085b223028230712"
 
 
